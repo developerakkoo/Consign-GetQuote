@@ -1,0 +1,7 @@
+{
+  "name": "frugal-getquote",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
