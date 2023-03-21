@@ -87,7 +87,7 @@ export class ProformaPage implements OnInit {
     this.cancelCharges = this.quote['cancel'];
     this.helperCharges = this.quote['helper'];
     this.waitingCharges = this.quote['waiting'];
-    this.packagingCharges = this.quote['package'];
+    this.packagingCharges = this.quote['packing'];
     this.paymentCharges = this.quote['payment'];
     this.gstPercent = this.quote['gstPercent'];
     this.gstType = this.quote['gstType'];
