@@ -1,0 +1,27 @@
+{
+  "database": {
+    "rules": "yes"
+  },
+  "firestore": {
+    "rules": "y",
+    "indexes": "y"
+  },
+  "hosting": {
+    "public": "www",
+    "site":"consign-getquote",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "yes"
+  }
+}

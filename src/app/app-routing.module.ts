@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'proforma',
+    loadChildren: () => import('./proforma/proforma.module').then( m => m.ProformaPageModule)
+  },
 ];
 
 @NgModule({
