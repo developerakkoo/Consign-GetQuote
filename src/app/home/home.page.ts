@@ -1,6 +1,6 @@
 import { ProformaPage } from './../proforma/proforma.page';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +8,9 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { finalize, Observable } from 'rxjs';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,7 +18,13 @@ import { finalize, Observable } from 'rxjs';
 })
 export class HomePage {
 
+  @ViewChild("placesRef") placesRef!: GooglePlaceDirective;
+  options!: Options;
+
   quoteForm: FormGroup;
+
+  pickup!:string;
+  drop!: string;
 
   unregisteredCol: AngularFirestoreCollection<any>;
 
@@ -69,9 +78,16 @@ isCamera:boolean = false;
     await loading.present();
   }
   async submit(){
+   console.log(this.quoteForm.value);
+   this.quoteForm.setValue({
+    pickup: this.pickup,
+    drop: this.drop
+   })
    
-    this.presentLoading("Please wait...")
+    this.presentLoading("Please wait...");
+
     let id = this.afs.createId();
+
     let obj = {
       pickup: this.quoteForm.value.pickup,
       drop: this.quoteForm.value.drop,
@@ -138,7 +154,11 @@ isCamera:boolean = false;
     }
     this.orderId = id;
 
-    this.unregisteredCol.doc(id).set(obj).then(async (done) =>{
+
+    this.unregisteredCol
+    .doc(id)
+    .set(obj)
+    .then(async (done) =>{
       console.log(done);
       console.log(id);
       
@@ -242,6 +262,27 @@ isCamera:boolean = false;
       return blob;
     }
     
+    public handleAddressChangePickup(address: Address, type: string) {
+      // Do some stuff
+      console.log(address);
+      let add = address['formatted_address'];
+  
+      this.pickup = add;
+  
+
+      
+  
+    }
+
+    public handleAddressChangeDrop(address: Address, type: string) {
+      // Do some stuff
+      console.log(address);
+      let add = address['formatted_address'];
+
+
+      this.drop = add;
+  
+    }
 
     
   

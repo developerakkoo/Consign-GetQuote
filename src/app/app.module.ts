@@ -13,6 +13,9 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+
 const firebaseConfig = {
   apiKey: "AIzaSyB8jWxZPWeAFvV1HFMnYtM5ohdKYPsk15E",
   authDomain: "consign-612af.firebaseapp.com",
@@ -29,6 +32,7 @@ const firebaseConfig = {
   imports: [BrowserModule, IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule, 
+    GooglePlaceModule,
     IonicStorageModule.forRoot({name: 'getquote'}),
    AngularFireModule.initializeApp(firebaseConfig), 
    AngularFireStorageModule, 

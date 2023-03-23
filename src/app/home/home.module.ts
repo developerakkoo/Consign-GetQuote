@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    GooglePlaceModule,
     HomePageRoutingModule
   ],
   declarations: [HomePage]

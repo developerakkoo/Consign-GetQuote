@@ -13,12 +13,14 @@
       <ion-card>
         <form [formGroup]="quoteForm" (ngSubmit)="submit()">
           <ion-item>
-            <ion-label position="floating">Enter Pickup Location <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required formControlName="pickup" type="text"></ion-input>
+            <input placeholder="Enter Pickup location" style="width: 100%;"  ngx-google-places-autocomplete
+            [options]='options' formControlName="pickup" #placesRef="ngx-places"
+            (onAddressChange)="handleAddressChangePickup($event, 'p')" />
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Enter Drop Location <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required formControlName="drop" type="text"></ion-input>
+            <input placeholder="Enter Drop Location" style="width: 100%;" formControlName="drop" ngx-google-places-autocomplete
+            [options]='options' #placesRef="ngx-places"
+            (onAddressChange)="handleAddressChangeDrop($event, 'd')" />
           </ion-item>
 
 
